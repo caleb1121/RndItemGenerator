@@ -13,7 +13,7 @@ namespace RndItemGenerator
 
 
 
-            String[] TrashCondition_List = new string[10]; // Trash Condition List 
+            String[] TrashCondition_List = new string[11]; // Trash Condition List 
                 TrashCondition_List[0] = "Terrible";
                 TrashCondition_List[1] = "Garbage";
                 TrashCondition_List[2] = "Broken";
@@ -27,38 +27,7 @@ namespace RndItemGenerator
                 TrashCondition_List[10] = "Brittle";
 
 
-             String[] Item_list = new string[27]; // Item List
-                Item_list[0] = "Sword";
-                Item_list[1] = "Shield";
-                Item_list[2] = "Hairband";
-                Item_list[3] = "Mace";
-                Item_list[4] = "Axe";
-                Item_list[5] = "Boots";
-                Item_list[6] = "Pants";
-                Item_list[7] = "G-String";
-                Item_list[8] = "Shirt";
-                Item_list[9] = "Mask";
-                Item_list[10] = "Club";
-                Item_list[11] = "Fork";
-                Item_list[12] = "Dagger";
-                Item_list[13] = "Plastic Fork";
-                Item_list[14] = "Bottle";
-                Item_list[15] = "Glasses";
-                Item_list[16] = "Bracers";
-                Item_list[17] = "Gloves";
-                Item_list[18] = "Earings";
-                Item_list[19] = "Pitchfork ";
-                Item_list[20] = "Shovel";
-                Item_list[21] = "Toothbrush";
-                Item_list[22] = "Brick";
-                Item_list[23] = "Sandals";
-                Item_list[24] = "Spoon";
-                Item_list[25] = "Baby";
-                Item_list[26] = "Shoelace";
-                Item_list[27] = "Bracelet";
-
-
-            String[] OffensiveItems_List = new string[12]; // Offensive Items List
+            String[] OffensiveItems_List = new string[13]; // Offensive Items List
                 OffensiveItems_List[0] = "Sword";
                 OffensiveItems_List[1] = "Mace";
                 OffensiveItems_List[2] = "Axe";
@@ -74,7 +43,7 @@ namespace RndItemGenerator
                 OffensiveItems_List[12] = "Baby";
 
 
-            String[] DefensiveItems_List = new string[12]; // Defensive Items List
+            String[] DefensiveItems_List = new string[13]; // Defensive Items List
                 DefensiveItems_List[0] = "Shield";
                 DefensiveItems_List[1] = "Hairband";
                 DefensiveItems_List[2] = "Boots";
@@ -89,8 +58,18 @@ namespace RndItemGenerator
                 DefensiveItems_List[11] = "Sandals";
                 DefensiveItems_List[12] = "Bracelet";
 
+            String[] OffensiveSkills_List = new string[6]; // Offensive Skills List
+                OffensiveSkills_List[0] = "Attack";
+                OffensiveSkills_List[1] = "Speed";
+                OffensiveSkills_List[2] = "Range";
+                OffensiveSkills_List[3] = "Durability";
+                OffensiveSkills_List[4] = "Critical Hit Chance";
+                OffensiveSkills_List[5] = "Weight";
 
-            
+            String[] DefensiveSkills_List = new string[3]; // Defensive Skills List
+                DefensiveSkills_List[0] = "Armor";
+                DefensiveSkills_List[1] = "Durability";
+                DefensiveSkills_List[2] = "Weight";
 
 
 
@@ -103,6 +82,8 @@ namespace RndItemGenerator
 
 
 
+
+            Again:
 
             Console.WriteLine("Welcome To Sally's Store Of Random Apparatus v.0.11");
             Console.WriteLine("");
@@ -114,38 +95,73 @@ namespace RndItemGenerator
 
             String UserInput = Console.ReadLine(); // Save User input
 
+
+            Console.Clear(); // clears the console
+
+
             if (UserInput == "1") // Generate single item if user selects option 1
             {
 
                 Random rndNumber = new Random(); // random number
               
               
-                    int rarityNumber = rndNumber.Next(0, 101); // Generate new random number between 0 and 100
+                int rarityNumber = rndNumber.Next(0, 101); // Generate new random number between 0 and 100
 
-                    if (rarityNumber >= 0 && rarityNumber <= 30) // Trash item
-                    {
-                        
-                    }
+                 if (rarityNumber >= 0 && rarityNumber <= 100) // Trash item (normally between 0 and 30)
+                 {
 
-                    if (rarityNumber >= 30 && rarityNumber <= 55) // Regular Item
-                    {
-                        
-                    }
+                        string ItemCondition; // store item condition
+                        string ItemName; // store item name
+                        string ItemRarity = "Trash"; // item rarity
 
-                    if (rarityNumber >= 55 && rarityNumber <= 75) // Mediocre Item
-                    {
-                        
-                    }
+                        ItemCondition = TrashCondition_List[rndNumber.Next(0, 11)]; // choose item condition using random array item
 
-                    if (rarityNumber >= 75 && rarityNumber <= 90) // Beefy Item
-                    {
+                        int itemTypeChoice = rndNumber.Next(0,2); // generate a number between 0 - 1 and store inside "itemTypeChoice"
                         
-                    }
+                        if(itemTypeChoice == 0) // Offensive items
+                        {
+                             ItemName = OffensiveItems_List[rndNumber.Next(0, 13)];
+                        }
 
-                    if (rarityNumber >= 90 && rarityNumber <= 100) // Extravigant Item
-                    {
+                        else // Defensive items
+                        {
+                            ItemName = DefensiveItems_List[rndNumber.Next(0, 13)];
+                        }
+
+
+
+
+
+                    Console.WriteLine("Item Generated Succesfully!");
+                    Console.WriteLine("Item Name: " + ItemCondition + " " + ItemName);
+                    Console.WriteLine("Rarity: " + ItemRarity);
+
+                    Console.WriteLine("Press Any Key To Continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto Again;
+
+                 }
+
+                 if (rarityNumber >= 30 && rarityNumber <= 55) // Regular Item
+                 {
                         
-                    }
+                 }
+
+                 if (rarityNumber >= 55 && rarityNumber <= 75) // Mediocre Item
+                 {
+                        
+                 }
+
+                if (rarityNumber >= 75 && rarityNumber <= 90) // Beefy Item
+                {
+                        
+                }
+
+                if (rarityNumber >= 90 && rarityNumber <= 100) // Extravigant Item
+                {
+                        
+                }
 
                     
                             
