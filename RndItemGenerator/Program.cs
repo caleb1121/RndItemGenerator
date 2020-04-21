@@ -58,18 +58,23 @@ namespace RndItemGenerator
                 DefensiveItems_List[11] = "Sandals";
                 DefensiveItems_List[12] = "Bracelet";
 
-            String[] OffensiveSkills_List = new string[6]; // Offensive Skills List
+            String[] OffensiveSkills_List = new string[8]; // Offensive Skills List
                 OffensiveSkills_List[0] = "Attack";
                 OffensiveSkills_List[1] = "Speed";
                 OffensiveSkills_List[2] = "Range";
-                OffensiveSkills_List[3] = "Durability";
+                OffensiveSkills_List[3] = "Attack Speed";
                 OffensiveSkills_List[4] = "Critical Hit Chance";
                 OffensiveSkills_List[5] = "Weight";
+                OffensiveSkills_List[6] = "Throw";
+                OffensiveSkills_List[7] = "Balance";
 
-            String[] DefensiveSkills_List = new string[3]; // Defensive Skills List
+            String[] DefensiveSkills_List = new string[6]; // Defensive Skills List
                 DefensiveSkills_List[0] = "Armor";
                 DefensiveSkills_List[1] = "Durability";
                 DefensiveSkills_List[2] = "Weight";
+                DefensiveSkills_List[3] = "Jump Height";
+                DefensiveSkills_List[4] = "Health Regen";
+                DefensiveSkills_List[5] = "Mana Regen";
 
 
 
@@ -83,7 +88,7 @@ namespace RndItemGenerator
 
 
 
-            Again:
+        Again:
 
             Console.WriteLine("Welcome To Sally's Store Of Random Apparatus v.0.11");
             Console.WriteLine("");
@@ -107,34 +112,78 @@ namespace RndItemGenerator
               
                 int rarityNumber = rndNumber.Next(0, 101); // Generate new random number between 0 and 100
 
-                 if (rarityNumber >= 0 && rarityNumber <= 100) // Trash item (normally between 0 and 30)
-                 {
+                if (rarityNumber >= 0 && rarityNumber <= 100) // Trash item (normally between 0 and 30)
+                {
 
-                        string ItemCondition; // store item condition
-                        string ItemName; // store item name
-                        string ItemRarity = "Trash"; // item rarity
+                    string ItemCondition; // store item condition
+                    string ItemName; // store item name
+                    string ItemRarity = "Trash"; // item rarity
+                    string Skill1 = "";
+                    string Skill2 = "";
+                    int Skillnum1 = rndNumber.Next(-3, 4); // skill modify amount
+                    int Skillnum2 = rndNumber.Next(-3, 4); // skill modify amount
 
-                        ItemCondition = TrashCondition_List[rndNumber.Next(0, 11)]; // choose item condition using random array item
 
-                        int itemTypeChoice = rndNumber.Next(0,2); // generate a number between 0 - 1 and store inside "itemTypeChoice"
+                    ItemCondition = TrashCondition_List[rndNumber.Next(0, 11)]; // choose item condition using random array item
+
+                    int itemTypeChoice = rndNumber.Next(0, 2); // generate a number between 0 - 1 and store inside "itemTypeChoice"
+
+
+                    int modifiedSkills = rndNumber.Next(0, 2); // How many skills are modified 
+
+
+                    if (itemTypeChoice == 0) // Offensive items
+                    {
+                        ItemName = OffensiveItems_List[rndNumber.Next(0, 13)]; // choose an item from offensive item list
+
+                        if (modifiedSkills == 0) // if 0 then item only has one skill modifier
+                        {
+                            Skill1 = OffensiveSkills_List[rndNumber.Next(0,8)]; // choose random offensive skill 1
+                        }
+
+                        else // else item has two skill modifiers
+                        {
+                            Skill1 = OffensiveSkills_List[rndNumber.Next(0, 8)]; // choose random offensive skill 1
+                            Skill2 = OffensiveSkills_List[rndNumber.Next(0, 8)]; // choose random offensive skill 2
+                        }
+                    }
+
+
+
+
+                    else // Defensive items
+                    {
+                        ItemName = DefensiveItems_List[rndNumber.Next(0, 13)]; // choose random defensive item
+
+                        if (modifiedSkills == 0) // if 0 then item only has one skill modifier
+                        {
+                            Skill1 = DefensiveSkills_List[rndNumber.Next(0, 5)]; //choose random defensive skill 1
+                        }
+
+                        else // else item has two skill modifiers
+                        {
+                            Skill1 = DefensiveSkills_List[rndNumber.Next(0, 5)]; //choose random defensive skill 1
+                            Skill2 = DefensiveSkills_List[rndNumber.Next(0, 5)]; //choose random defensive skill 2
+                        }
+                    }
+
+
+                    
+
+
+                            
                         
-                        if(itemTypeChoice == 0) // Offensive items
-                        {
-                             ItemName = OffensiveItems_List[rndNumber.Next(0, 13)];
-                        }
-
-                        else // Defensive items
-                        {
-                            ItemName = DefensiveItems_List[rndNumber.Next(0, 13)];
-                        }
 
 
 
 
-
+                    // Item printer below!
                     Console.WriteLine("Item Generated Succesfully!");
                     Console.WriteLine("Item Name: " + ItemCondition + " " + ItemName);
                     Console.WriteLine("Rarity: " + ItemRarity);
+                    Console.WriteLine(Skill1 + " " + Skillnum1);
+                    if (Skill2 != "") // check if the second skill is empty if it's not then print second skill
+                    { Console.WriteLine(Skill2 + " " + Skillnum2); }
 
                     Console.WriteLine("Press Any Key To Continue");
                     Console.ReadKey();
