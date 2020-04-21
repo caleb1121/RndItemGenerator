@@ -20,6 +20,7 @@ namespace RndItemGenerator
             Console.WriteLine("Stat one: + 5 attack");
             Console.WriteLine("Stat two: +2 speed");
             Console.WriteLine("Special ability: Wasp explosion!");
+            //add
         }
     }
 }
