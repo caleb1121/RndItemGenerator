@@ -10,17 +10,35 @@ namespace RndItemGenerator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Generated item: Fighting Wasp");
-            Console.Write("Rarity level: " );
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Rare");
-            Console.ResetColor();
+            Console.WriteLine("Welcome To Sally's Store Of Random Apparatus v.0.11");
             Console.WriteLine("");
 
-            Console.WriteLine("Stat one: + 5 attack");
-            Console.WriteLine("Stat two: +2 speed");
-            Console.WriteLine("Special ability: Wasp explosion!");
-            //add
+            // Main Menu
+            Console.WriteLine("1. Generate Item");
+            Console.WriteLine("2. Place Holder");
+            Console.WriteLine("3. Leave The Store");
+
+            String UserInput = Console.ReadLine(); // Save User input
+
+            if (UserInput == "1") // Generate single item if user selects option 1
+            {
+
+
+            }
+
+            else if(UserInput == "2") // Not finished
+            {
+                Console.WriteLine("Not finished fuck off!");
+                
+
+            }
+
+            else // Quit the application
+            {
+                Environment.Exit(0);
+            }
+
+
         }
     }
 }
